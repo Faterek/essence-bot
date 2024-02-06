@@ -1,0 +1,3 @@
+[submodule "modules"]
+	path = modules
+	url = https://gitea.fater.eu.org/fater.dev/essence-bot-modules
