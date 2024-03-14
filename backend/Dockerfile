@@ -1,36 +1,27 @@
-## build runner
-FROM node:lts-alpine as build-runner
+FROM oven/bun:1-alpine as build
 
-# Set temp directory
 WORKDIR /tmp/app
 
-# Move package.json
-COPY package.json .
+COPY package.json bun.lockb ./
 
-# Install dependencies
-RUN npm install
+RUN bun install --frozen-lockfile
 
-# Move source files
 COPY src ./src
-COPY tsconfig.json   .
+COPY tsconfig.json .
 
-# Build project
-RUN npm run build
+RUN bun run build
 
-## production runner
-FROM node:lts-alpine as prod-runner
 
-# Set work directory
+
+FROM oven/bun:1-alpine as prod
+
 WORKDIR /app
 
-# Copy package.json from build-runner
-COPY --from=build-runner /tmp/app/package.json /app/package.json
+COPY --from=build /tmp/app/package.json /app/package.json
+COPY --from=build /tmp/app/bun.lock /app/bun.lock
 
-# Install dependencies
-RUN npm install --omit=dev
+RUN bun install --frozen-lockfile --production
 
-# Move build files
-COPY --from=build-runner /tmp/app/build /app/build
+COPY --from=build /tmp/app/build /app/build
 
-# Start bot
-CMD [ "npm", "run", "start" ]
+CMD [ "bun", "run", "start" ]
