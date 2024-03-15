@@ -1,14 +1,25 @@
-import { Client, CommandInteraction } from "discord.js";
 import { bot } from "../index";
+import type { CommandInteraction, ApplicationCommandOptionData } from 'discord.js';
 
-export function createGlobalCommand(name: string, description: string, execute: (interaction: CommandInteraction) => void) {
-    bot.application?.commands.create({
-        name: name,
-        description: description
-    });
+export function createSlashCommand(name: string, description: string, options?: any[], guild?: string, interactionHandler?: (interaction: CommandInteraction) => void) {
+    let data: { name: string; description: string; guild?: string; options?: ApplicationCommandOptionData[] } = {
+        name,
+        description,
+    };
+    if (options) {
+        data.options = options;
+    }
+    if (guild) {
+        data.guild = guild;
+    }
+    bot.application?.commands.create(data);
 
-    bot.on('interactionCreate', async (interaction) => {
-        if (!interaction.isCommand() || interaction.commandName !== name) return;
-        execute(interaction);
-    });
+    if (interactionHandler) {
+        bot.on('interactionCreate', async (interaction) => {
+            if (!interaction.isCommand()) return;
+            if (interaction.commandName === name) {
+                await interactionHandler(interaction);
+            }
+        });
+    }
 }
