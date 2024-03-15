@@ -9,6 +9,8 @@
     "moduleResolution": "Node",
     "types": ["bun-types"],
 
+    // allow js files so bot modules are not forced to be ts
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": false,

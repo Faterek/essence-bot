@@ -15,3 +15,7 @@ gitignore
 # System Files
 .DS_Store
 Thumbs.db
+
+# Module files
+modules/*
+!modules/.gitkeep
