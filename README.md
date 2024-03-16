@@ -1,2 +1,1 @@
-# essence-discord-bot
-
+# Essence bot

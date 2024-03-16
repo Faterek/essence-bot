@@ -4,7 +4,15 @@
   "license": "CC-BY-SA-4.0",
   "private": true,
   "workspaces": [
-    "backend",
-    "frontend"
-  ]
+    "discord-bot",
+    "dashboard",
+    "modules/*"
+  ],
+  "scripts": {
+    "build:dashboard": "bun run --cwd dashboard build",
+    "dev:discord-bot": "bun run --cwd discord-bot dev",
+    "dev:dashboard": "bun run --cwd dashboard dev",
+    "start:discord-bot": "bun run --cwd discord-bot start",
+    "start:dashboard": "bun run --cwd dashboard start"
+  }
 }

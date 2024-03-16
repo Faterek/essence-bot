@@ -3,11 +3,20 @@ import type { CommandInteraction, ApplicationCommandOptionData } from 'discord.j
 
 export function createSlashCommand(name: string, description: string, options?: any[], guild?: string, interactionHandler?: (interaction: CommandInteraction) => void) {
     let data: { name: string; description: string; guild?: string; options?: ApplicationCommandOptionData[] } = {
-        name,
+        name: name.toLowerCase(),
         description,
     };
     if (options) {
-        data.options = options;
+        data.options = options.map(option => {
+            return {
+                type: option.type,
+                name: option.name,
+                description: option.description,
+                required: option.required,
+                choices: option.choices,
+                options: option.options,
+            };
+        });
     }
     if (guild) {
         data.guild = guild;
