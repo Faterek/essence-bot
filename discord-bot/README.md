@@ -1,5 +1,5 @@
 <div>
-    <p align="center"><img src="../assets/banner-frame-essence-bot-bg.svg" width="600"></img></p>
+    <p align="center"><img src="./assets/banner-frame-essence-bot-bg.svg" width="600"></img></p>
 </div>
 
 # 📖 Introduction
