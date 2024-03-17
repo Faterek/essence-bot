@@ -17,10 +17,10 @@ type ModuleManifest = {
 };
 
 const modulesDirs = await readdir(`${appRoot}/modules`, { withFileTypes: true })
-    .then(dirs => dirs.length ? null : dirs
+    .then(dirs => dirs.length ? dirs
     .filter(dirent => dirent
     .isDirectory())
-    .map(dirent => `${appRoot}/modules/${dirent.name}`) as string[]);
+    .map(dirent => `${appRoot}/modules/${dirent.name}`) as string[] : null);
 
 const modulesConf = await Bun.file(`${appRoot}/config/modules.json`).json();
 
@@ -31,7 +31,7 @@ export async function initialModuleImport(): Promise<string[]> {
     }
     for (const modulePath of modulesDirs) {
         const moduleCodeName = modulePath.split("/").pop() as string;
-        if (modulesConf.disabled.includes(moduleCodeName)) {
+        if (modulesConf.disabled && modulesConf.disabled.includes(moduleCodeName)) {
             console.log(`Module ${moduleCodeName} is disabled, skipping...`);
             continue;
         }
