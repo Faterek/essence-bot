@@ -1,5 +1,5 @@
 <div>
-    <p align="center"><img src="https://nextcloud.fater.eu.org/s/a4yxLZxmdQC9NZy/download/banner-frame-essence-bot-bg.svg" width="600"></img></p>
+    <p align="center"><img src="https://cdn.discordapp.com/attachments/909529151478841406/1219065265333997648/banner-frame-essence-bot-bg.svg?ex=6609f200&is=65f77d00&hm=c29725721f859372ff62e4bbd45fb987a138838cfc48d16659fa12c7bb9b06e9&" width="600"></img></p>
 </div>
 
 # 📖 Introduction
