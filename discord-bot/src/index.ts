@@ -1,6 +1,5 @@
 import { Client, IntentsBitField } from "discord.js";
-import { readdir } from "node:fs/promises";
-import appRoot from "app-root-path";
+import { initialModuleImport } from "./lib/modules";
 
 export const bot = new Client({
   intents: [
@@ -11,29 +10,12 @@ export const bot = new Client({
   ],
 });
 
-bot.on("ready", async () => {
-  console.log("Bot is ready");
+export let loadedModules: string[] = [];
 
-  const loadedModules = await importModules();
+bot.on("ready", async () => {
+  await initialModuleImport();
+  console.log("Bot is ready");
   console.log("Loaded modules:", loadedModules);
 });
 
 bot.login(process.env.DISCORD_TOKEN);
-
-async function importModules() {
-  const path = appRoot + "/modules";
-  const dirs = await readdir(path, { withFileTypes: true });
-
-  const modules = dirs.filter(dirent => dirent.isDirectory()).map(dirent => dirent.name);
-  let loadedModules = [];
-  for (const module of modules) {
-    const modulePath = path + "/" + module + "/index.ts";
-    const moduleImport = await import(modulePath);
-    if (typeof moduleImport.default === "function") {
-      moduleImport.default();
-      loadedModules.push(module);
-    }
-  }
-  
-  return loadedModules;
-}

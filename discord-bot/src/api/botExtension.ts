@@ -1,22 +1,20 @@
 import { bot } from "../index";
 import type { CommandInteraction, ApplicationCommandOptionData } from 'discord.js';
 
-export function createSlashCommand(name: string, description: string, options?: any[], guild?: string, interactionHandler?: (interaction: CommandInteraction) => void) {
-    let data: { name: string; description: string; guild?: string; options?: ApplicationCommandOptionData[] } = {
+type SlashCommandData = {
+    name: string;
+    description: string;
+    guild?: string;
+    options?: ApplicationCommandOptionData[];
+};
+
+export function createSlashCommand(name: string, description: string, options?: ApplicationCommandOptionData[], guild?: string, interactionHandler?: (interaction: CommandInteraction) => void) {
+    let data: SlashCommandData = {
         name: name.toLowerCase(),
         description,
     };
     if (options) {
-        data.options = options.map(option => {
-            return {
-                type: option.type,
-                name: option.name,
-                description: option.description,
-                required: option.required,
-                choices: option.choices,
-                options: option.options,
-            };
-        });
+        data.options = options;
     }
     if (guild) {
         data.guild = guild;
@@ -27,7 +25,7 @@ export function createSlashCommand(name: string, description: string, options?: 
         bot.on('interactionCreate', async (interaction) => {
             if (!interaction.isCommand()) return;
             if (interaction.commandName === name) {
-                await interactionHandler(interaction);
+                interactionHandler(interaction);
             }
         });
     }
