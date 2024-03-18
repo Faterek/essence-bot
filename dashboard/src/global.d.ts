@@ -1,1 +1,2 @@
-/// <reference types="@solidjs/start/env" />
+// @ts-ignore
+/// <reference types="solid-start/env" />

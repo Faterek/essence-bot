@@ -3,19 +3,20 @@
     "lib": ["ESNext"],
     "target": "ESNext",
     "module": "ESNext",
-    "outDir": "build",
     "rootDir": "src",
-    "strict": true,
     "moduleResolution": "Node",
     "types": ["bun-types"],
-
-    // allow js files so bot modules are not forced to be ts
+    "jsx": "preserve",
+    "strict": true,
     "allowJs": true,
+    "noEmit": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": false,
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-  },
-  "exclude": ["build"]
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    
+  }
 }
