@@ -20,4 +20,10 @@ This is **Essence Bot** bot/backend component
 
 Every component of the bot and any first party modules are licensed under **CC BY-SA 4.0**
 
+# 🤝 Contributors
+
+**Narufae**
+**Faterek**
+ 
+
 # 💖 Support
