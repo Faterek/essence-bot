@@ -6,6 +6,7 @@
     "rootDir": "src",
     "moduleResolution": "Node",
     "types": ["bun-types"],
+    "jsxImportSource": "solid-js",
     "jsx": "preserve",
     "strict": true,
     "allowJs": true,
