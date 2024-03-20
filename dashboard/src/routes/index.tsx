@@ -1,7 +1,7 @@
 import { createSession, signIn } from "@solid-mediakit/auth/client";
 import { Navigate } from "@solidjs/router";
 import { Show, createSignal, onCleanup } from "solid-js";
-
+import "../app.css";
 
 export default function Home() {
   const session = createSession();
@@ -9,7 +9,7 @@ export default function Home() {
   const [redirectIn, setRedirectIn] = createSignal(3);
 
   const int = setInterval(() => {
-    setRedirectIn(prev => prev - 1);
+    setRedirectIn((prev) => prev - 1);
   }, 1000);
 
   onCleanup(() => clearInterval(int));
@@ -23,6 +23,7 @@ export default function Home() {
           <>
             <span>You are not signed in.</span>
             <button onClick={() => signIn("discord")}>Sign In</button>
+            <p class="bg-[#1da1f2]">Tailwind test</p>
           </>
         }
       >

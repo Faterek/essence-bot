@@ -22,7 +22,7 @@ Every component of the bot and any first party modules are licensed under **CC B
 
 # 🤝 Contributors
 
-**Narufae**
 **Faterek**
- 
+**Narufae**
+
 # 💖 Support
