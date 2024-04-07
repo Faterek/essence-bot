@@ -19,3 +19,6 @@ Thumbs.db
 # Module files
 modules/*
 !modules/.gitkeep
+
+# Bun lock file
+.bun.lockb
