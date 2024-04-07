@@ -21,4 +21,4 @@ modules/*
 !modules/.gitkeep
 
 # Bun lock file
-.bun.lockb
+bun.lockb
