@@ -1,6 +1,34 @@
 <div>
-    <p align="center"><img src="https://cdn.discordapp.com/attachments/909529151478841406/1219065265333997648/banner-frame-essence-bot-bg.svg?ex=6609f200&is=65f77d00&hm=c29725721f859372ff62e4bbd45fb987a138838cfc48d16659fa12c7bb9b06e9&" width="600"></img></p>
+    <p align="center">
+        <img src="https://s3.fater.dev/common-assets/banner-frame-essence-bot-bg.svg" width="600"></img>
+    </p>
 </div>
+
+<div align="center">
+    <a href='https://jenkins.fater.eu.org/job/Essence%20Bot/job/essence-bot/job/master/'>
+        <img src='https://jenkins.fater.eu.org/buildStatus/icon?job=Essence+Bot%2Fessence-bot%2Fmaster&subject=Bot build status:'>
+    </a>
+    &nbsp;
+    <a href='https://jenkins.fater.eu.org/job/Essence%20Bot/job/essence-bot-docs/job/master/'>
+        <img src='https://jenkins.fater.eu.org/buildStatus/icon?job=Essence+Bot%2Fessence-bot-docs%2Fmaster&subject=Docs build status:'>
+    </a>
+    &nbsp;
+    <a href='https://jenkins.fater.eu.org/job/Essence%20Bot/job/essence-bot-docs/job/master/'>
+        <img src='https://jenkins.fater.eu.org/buildStatus/icon?job=Essence+Bot%2Fessence-bot-docs%2Fmaster&subject=Website build status:'>
+    </a>
+</div>
+
+# 📜 Table of contents
+
+- [📖 Introduction](#-introduction)
+- [🧑‍💻 How to run](#-how-to-run)
+  - [📦 Docker](#-docker-recomended)
+  - [🖥️ Bare metal](#-bare-metal-not-recomended)
+- [📄 Documentation](#-documentation)
+- [💬 Help and contact](#-help-and-contact)
+- [📃 License](#-license)
+- [🤝 Contributors](#-contributors)
+- [💖 Support](#-support)
 
 # 📖 Introduction
 
@@ -8,7 +36,7 @@ Essence Bot is FLOSS discord bot with dashboard and module support (both 1st and
 
 # 🧑‍💻 How to run
 
-### 📦 Docker way (**recomended**)
+### 📦 Docker (**recomended**)
 
 ### 🖥️ Bare metal (**not recomended**)
 
@@ -18,7 +46,7 @@ Essence Bot is FLOSS discord bot with dashboard and module support (both 1st and
 
 # 📃 License
 
-Every component of the bot and any first party modules are licensed under **CC BY-SA 4.0**
+Every component of the bot and any first party modules are licensed under **Open Software License v. 3.0 (OSL-3.0)**
 
 # 🤝 Contributors
 
