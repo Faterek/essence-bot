@@ -21,6 +21,6 @@
     "@types/bun": "1.0.8"
   },
   "overrides": {
-    "discord-api-types": "0.37.74"
+    "discord-api-types": "0.37.79"
   }
 }
