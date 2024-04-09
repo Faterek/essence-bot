@@ -1,21 +1,30 @@
-import { Client, IntentsBitField } from "discord.js";
+import { Client, Events, GatewayIntentBits } from "discord.js";
 import { initialModuleImport } from "./lib/modules";
+import type { RESTPostAPIChatInputApplicationCommandsJSONBody } from "discord-api-types/v10";
 
 export const bot = new Client({
   intents: [
-    IntentsBitField.Flags.Guilds,
-    IntentsBitField.Flags.GuildMembers,
-    IntentsBitField.Flags.GuildMessages,
-    IntentsBitField.Flags.MessageContent
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildVoiceStates,
+    GatewayIntentBits.MessageContent,
   ],
 });
 
 export let loadedModules: string[] = [];
+export let commandsList: RESTPostAPIChatInputApplicationCommandsJSONBody[] = [];
 
-bot.on("ready", async () => {
-  await initialModuleImport();
+console.log("Bot is starting...");
+console.log("importing modules...");
+await initialModuleImport();
+console.log(`Loaded modules: [${loadedModules.join(", ")}]`);
+console.log("importing commands...")
+bot.application?.commands.set(commandsList);
+console.log(`Commands imported: ${commandsList.length}`);
+
+bot.once(Events.ClientReady, async _readyClient => {
   console.log("Bot is ready");
-  console.log("Loaded modules:", loadedModules);
-});
+}); 
 
 bot.login(process.env.DISCORD_TOKEN);

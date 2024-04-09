@@ -22,3 +22,6 @@ modules/*
 
 # Bun lock file
 bun.lockb
+
+/config/*
+!/config/.gitkeep

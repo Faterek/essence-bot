@@ -7,7 +7,6 @@ import { loadedModules } from "../index";
 type ModuleManifest = {
     name: string;
     fullName: string;
-    version: string;
     description: string;
     author: string;
     dependencies?: {
@@ -21,6 +20,10 @@ const modulesDirs = await readdir(`${appRoot}/modules`, { withFileTypes: true })
     .filter(dirent => dirent
     .isDirectory())
     .map(dirent => `${appRoot}/modules/${dirent.name}`) as string[] : null);
+
+if (await Bun.file(`${appRoot}/config/modules.json`).exists() === false) {
+    await Bun.write(`${appRoot}/config/modules.json`, JSON.stringify({"disabledModules": {}, installedModules: {} }, null, 4));
+}
 
 const modulesConf = await Bun.file(`${appRoot}/config/modules.json`).json();
 
@@ -58,10 +61,12 @@ async function importModule(moduleCodeName: string, modulePath: string): Promise
     const moduleImport = await import(`${modulePath}/index`);
     if (typeof moduleImport.discordBotInit === "function") {
         
-        const installedModuleVersion = await Bun.file(`${modulePath}/${requiredFiles[1]}`)
+        const installedModuleVersion = await Bun.file(`${modulePath}/${requiredFiles[2]}`)
             .text()
             .then(m => JSONC.parse(m).version);
-        if (!(moduleCodeName in modulesConf.installedModules) || +modulesConf.installedModules[moduleCodeName] < +installedModuleVersion) {
+ 
+        if (!(moduleCodeName in modulesConf.installedModules) || (modulesConf.installedModules[moduleCodeName] != installedModuleVersion)) {
+            console.log(`Module ${moduleCodeName} is not installed or version has changed, installing...`);
             await $`bun install`.cwd(modulePath);
         }
         try {
@@ -89,6 +94,7 @@ async function validateModule(moduleCodeName: string, modulePath: string): Promi
             return { pass: false };
         }
     }
+    const moduleVersion = await Bun.file(`${modulePath}/${requiredFiles[2]}`).json().then(p => p.version);
     const manifest = Bun.file(`${modulePath}/${requiredFiles[1]}`);
     const manifestData: ModuleManifest = await manifest.text().then(m => JSONC.parse(m));
     if(typeof manifestData.name !== 'string') {
@@ -97,10 +103,6 @@ async function validateModule(moduleCodeName: string, modulePath: string): Promi
     }
     if (typeof manifestData.fullName !== 'string') {
         console.error(`Module ${moduleCodeName} is missing field 'fullName' or isn't string in ${requiredFiles[1]}`);
-        return { pass: false };
-    }
-    if (typeof manifestData.version !== 'string') {
-        console.error(`Module ${moduleCodeName} is missing field 'version' or isn't string in ${requiredFiles[1]}`);
         return { pass: false };
     }
     if (typeof manifestData.description !== 'string') {
@@ -124,5 +126,5 @@ async function validateModule(moduleCodeName: string, modulePath: string): Promi
             return { pass: false };
         }
     }
-    return { pass: true, moduleVersion: manifestData.version };
+    return { pass: true, moduleVersion };
 }

@@ -1,32 +1,21 @@
 import { bot } from "../index";
-import type { CommandInteraction, ApplicationCommandOptionData } from 'discord.js';
+import { SlashCommandBuilder } from '@discordjs/builders';
+import type { CommandInteraction } from 'discord.js';
+import { Events } from "discord.js";
+import { commandsList } from "../index";
 
-type SlashCommandData = {
-    name: string;
-    description: string;
-    guild?: string;
-    options?: ApplicationCommandOptionData[];
-};
+export async function createSlashCommand(slashCommandHandler: (slashCommand: SlashCommandBuilder) => void, interactionHandler: (interaction: CommandInteraction) => void) {
+    const slashCommand = new SlashCommandBuilder();
+    slashCommandHandler(slashCommand);
+    bot.on(Events.InteractionCreate, async interaction => {
+        if (!interaction.isCommand()) return;
+        if (interaction.commandName === slashCommand.name) {
+            interactionHandler(interaction);
+        }
+    });
+    commandsList.push(slashCommand.toJSON());
+}
 
-export function createSlashCommand(name: string, description: string, options?: ApplicationCommandOptionData[], guild?: string, interactionHandler?: (interaction: CommandInteraction) => void) {
-    let data: SlashCommandData = {
-        name: name.toLowerCase(),
-        description,
-    };
-    if (options) {
-        data.options = options;
-    }
-    if (guild) {
-        data.guild = guild;
-    }
-    bot.application?.commands.create(data);
-
-    if (interactionHandler) {
-        bot.on('interactionCreate', async (interaction) => {
-            if (!interaction.isCommand()) return;
-            if (interaction.commandName === name) {
-                interactionHandler(interaction);
-            }
-        });
-    }
+export function getClient() {
+    return bot;
 }
