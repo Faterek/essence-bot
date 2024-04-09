@@ -1,3 +1,5 @@
+<style> div {vertical-align:middle;} </style>
+
 <div>
     <p align="center">
         <img src="https://s3.fater.dev/common-assets/banner-frame-essence-bot-bg.svg" width="600"></img>
@@ -50,7 +52,7 @@ Every component of the bot and any first party modules are licensed under **Open
 
 # 🤝 Contributors
 
-**Faterek**
-**Narufae**
-
+- **Faterek**
+- **Narufae**
+</div>
 # 💖 Support
