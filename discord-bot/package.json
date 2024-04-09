@@ -2,7 +2,7 @@
   "name": "essence-discord-bot",
   "version": "0.0.1",
   "private": true,
-  "license": "CC-BY-SA-4.0",
+  "license": "OSL-3.0",
   "type": "module",
   "main": "index.ts",
   "scripts": {

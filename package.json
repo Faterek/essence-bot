@@ -1,7 +1,7 @@
 {
   "name": "essence-bot",
   "version": "0.0.1",
-  "license": "CC-BY-SA-4.0",
+  "license": "OSL-3.0",
   "private": true,
   "workspaces": [
     "discord-bot",
