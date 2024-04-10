@@ -2,11 +2,11 @@ FROM oven/bun:1-alpine as build
 
 WORKDIR /tmp/app
 
-COPY package.json /tmp/app/package.json
+COPY dashboard/package.json /tmp/app/
 
 RUN bun install
 
-COPY . /tmp/app
+COPY dashboard/ /tmp/app
 
 RUN bun run build
 
@@ -16,7 +16,7 @@ FROM oven/bun:1-alpine as prod
 
 WORKDIR /app
 
-COPY ../package.json .
+COPY package.json /app
 
 COPY --from=build /tmp/app/package.json /app/dashboard
 

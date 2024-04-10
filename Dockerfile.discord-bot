@@ -2,13 +2,13 @@ FROM oven/bun:1-alpine
 
 WORKDIR /app
 
-COPY ../package.json .
+COPY package.json /app/
 
-COPY package.json ./discord-bot
+COPY /discord-bot/package.json /app/discord-bot/
 
 RUN bun install --production
 
-COPY . ./discord-bot
+COPY discord-bot /app/discord-bot
 
 RUN mkdir /app/modules
 
