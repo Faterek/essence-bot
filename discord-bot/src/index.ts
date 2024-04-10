@@ -19,11 +19,12 @@ console.log("Bot is starting...");
 console.log("importing modules...");
 await initialModuleImport();
 console.log(`Loaded modules: [${loadedModules.join(", ")}]`);
-console.log("importing commands...")
-bot.application?.commands.set(commandsList);
-console.log(`Commands imported: ${commandsList.length}`);
+
 
 bot.once(Events.ClientReady, async _readyClient => {
+  console.log("importing commands...")
+  bot.application?.commands.set(commandsList);
+  console.log(`Commands imported: ${commandsList.length}`);
   console.log("Bot is ready");
 }); 
 
