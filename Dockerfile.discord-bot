@@ -7,7 +7,7 @@ COPY package.json /app/
 COPY /discord-bot/package.json /app/discord-bot/
 
 RUN mkdir /app/modules
-RUN mkdir /app/dashboard
+COPY dashboard/package.json /app/dashboard/
 
 RUN bun install --production
 

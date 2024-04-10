@@ -21,7 +21,7 @@ COPY package.json /app
 COPY --from=build /tmp/app/package.json /app/dashboard
 
 RUN mkdir /app/modules
-RUN mkdir /app/discord-bot
+COPY discord-bot/package.json /app/discord-bot/
 
 RUN bun install --production
 
