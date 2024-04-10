@@ -6,11 +6,11 @@ COPY package.json /app/
 
 COPY /discord-bot/package.json /app/discord-bot/
 
+RUN mkdir /app/modules
+
 RUN bun install --production
 
 COPY discord-bot /app/discord-bot
-
-RUN mkdir /app/modules
 
 EXPOSE 8080
 
