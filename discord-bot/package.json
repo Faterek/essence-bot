@@ -14,8 +14,10 @@
     "discord.js": "14.14.1",
     "typescript": "5.4.5",
     "app-root-path": "3.1.0",
-    "hono": "4.2.3",
-    "jsonc-simple-parser": "^3.0.0"
+    "jsonc-simple-parser": "3.0.0",
+    "surrealdb.node": "0.3.0",
+    "ioredis": "5.4.1",
+    "elysia": "1.0.14"
   },
   "devDependencies": {
     "@types/bun": "1.0.12"
