@@ -20,7 +20,7 @@
     "elysia": "1.0.14"
   },
   "devDependencies": {
-    "@types/bun": "1.0.12"
+    "@types/bun": "1.1.0"
   },
   "overrides": {
     "discord-api-types": "0.37.81"
